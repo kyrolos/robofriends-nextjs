@@ -1,19 +1,23 @@
 import fetch from 'isomorphic-unfetch';
+import Header from '../components/Header';
+import SearchBox from '../components/SearchBox';
+import CardList from '../components/CardList';
 
-class Index extends React.Component {
+const Index = (props) => (
+  <div>
+    <Header />
+    <SearchBox />
+    <CardList robots={props.robots} />
+  </div>
+);
+
+Index.getInitialProps = async function() {
+  const req = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await req.json();
   
-  render() {
-    return <div>
-      <h1>Hello</h1>
-      <p>93, 93/93</p>
-      <style jsx>{`
-       h1 {
-         font-weight: 300;
-         color: #333;
-       }
-     `}</style>
-    </div>
+  return {
+    robots: data,
   }
-}
+};
 
 export default Index;
