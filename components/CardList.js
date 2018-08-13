@@ -1,5 +1,4 @@
 import Card from './Card';
-import { userInfo } from 'os';
 
 const CardList = ({ robots }) => {
   return (
